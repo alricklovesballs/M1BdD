@@ -38,7 +38,8 @@ Dossier : /src/Controller/
 Documentation : http://book.cakephp.org/3.0/fr/controllers.html
 
 Un Controller gère l'interpretation des données requêtées et fait une liaison entre le Model et la View. Il contient des méthodes publiques qui gèrent les requêtes ; ces méthodes sont appelées *actions*.  
-Ces actions sont accessibles via une URL de la forme **http://exemple.com/[controllers]/[action]**.  
+Ces actions sont accessibles via une URL de la forme **http://exemple.com/[controllers]/[action]**.
+
 Dans les Controllers, il est possible d'utiliser des [Components](http://book.cakephp.org/3.0/fr/controllers/components.html).
 
 ### View
