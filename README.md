@@ -55,6 +55,9 @@ $this->set('nom_var', $var);
 //template
 <?= $nom_var ?>
 ```  
+
+Pour ce qui est des fichiers de styles, javascript, fonts, images, ... ils se trouvent dans le dossier /webroot/.
+
 Dans les Templates, il est possible d'utiliser des [Helpers](http://book.cakephp.org/3.0/fr/views/helpers.html).
 
 ### Model
