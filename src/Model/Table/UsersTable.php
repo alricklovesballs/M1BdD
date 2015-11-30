@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\BelongsToMany $Events
  */
 class UsersTable extends Table
 {
@@ -28,6 +29,11 @@ class UsersTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->belongsToMany('Events', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'event_id',
+            'joinTable' => 'events_users'
+        ]);
     }
 
     /**

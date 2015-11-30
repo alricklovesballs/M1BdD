@@ -2,10 +2,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Events'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Event Games'), ['controller' => 'EventGames', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Event Game'), ['controller' => 'EventGames', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Event Users'), ['controller' => 'EventUsers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Event User'), ['controller' => 'EventUsers', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="events form large-9 medium-8 columns content">

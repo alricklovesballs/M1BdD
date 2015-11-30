@@ -27,10 +27,10 @@
                 <td><?= $this->Number->format($game->id) ?></td>
                 <td><?= h($game->title) ?></td>
                 <td><?= h($game->description) ?></td>
-                <td><?= h($game->nb_min) ?></td>
-                <td><?= h($game->nb_max) ?></td>
-                <td><?= h($game->age_min) ?></td>
-                <td><?= h($game->age_max) ?></td>
+                <td><?= $this->Number->format($game->nb_min) ?></td>
+                <td><?= $this->Number->format($game->nb_max) ?></td>
+                <td><?= $this->Number->format($game->age_min) ?></td>
+                <td><?= $this->Number->format($game->age_max) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $game->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $game->id]) ?>
