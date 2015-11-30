@@ -2,10 +2,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Event'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Event Games'), ['controller' => 'EventGames', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Event Game'), ['controller' => 'EventGames', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Event Users'), ['controller' => 'EventUsers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Event User'), ['controller' => 'EventUsers', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="events index large-9 medium-8 columns content">
@@ -31,8 +27,8 @@
                 <td><?= h($event->description) ?></td>
                 <td><?= h($event->start) ?></td>
                 <td><?= h($event->end) ?></td>
-                <td><?= h($event->nb_min) ?></td>
-                <td><?= h($event->nb_max) ?></td>
+                <td><?= $this->Number->format($event->nb_min) ?></td>
+                <td><?= $this->Number->format($event->nb_max) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $event->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $event->id]) ?>

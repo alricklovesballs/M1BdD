@@ -11,10 +11,10 @@ use Cake\ORM\Entity;
  * @property string $description
  * @property \Cake\I18n\Time $start
  * @property \Cake\I18n\Time $end
- * @property \Cake\I18n\Time $nb_min
- * @property \Cake\I18n\Time $nb_max
- * @property \Cake\I18n\Time $age_min
- * @property \Cake\I18n\Time $age_max
+ * @property int $nb_min
+ * @property int $nb_max
+ * @property int $age_min
+ * @property int $age_max
  * @property \App\Model\Entity\EventGame[] $event_games
  * @property \App\Model\Entity\EventUser[] $event_users
  */

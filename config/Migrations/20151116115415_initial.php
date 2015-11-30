@@ -34,45 +34,26 @@ class Initial extends AbstractMigration
             ->addColumn('description', 'string', ['null' => true])
             ->create();
 
-        $table = $this->table('categories_games', ['id' => false, 'primary_key' => ['category_id', 'game_id']]);
-        $table
-            ->addColumn('category_id', 'integer')
-            ->addColumn('game_id', 'integer')
-            ->create();
-
         $table = $this->table('events');
         $table
             ->addColumn('title', 'string', ['limit' => 100])
             ->addColumn('description', 'string', ['null' => true])
             ->addColumn('start', 'datetime')
             ->addColumn('end', 'datetime', ['null' => true])
-            ->addColumn('nb_min', 'datetime', ['null' => true])
-            ->addColumn('nb_max', 'datetime', ['null' => true])
-            ->addColumn('age_min', 'datetime', ['null' => true])
-            ->addColumn('age_max', 'datetime', ['null' => true])
-            ->create();
-
-        $table = $this->table('event_games', ['id' => false, 'primary_key' => ['event_id', 'game_id']]);
-        $table
-            ->addColumn('event_id', 'integer')
-            ->addColumn('game_id', 'integer')
-            ->create();
-
-        $table = $this->table('event_users', ['id' => false, 'primary_key' => ['event_id', 'user_id']]);
-        $table
-            ->addColumn('event_id', 'integer')
-            ->addColumn('user_id', 'integer')
-            ->addColumn('type', 'string', ['limit' => 15, 'default' => 'participant'])
+            ->addColumn('nb_min', 'integer', ['null' => true])
+            ->addColumn('nb_max', 'integer', ['null' => true])
+            ->addColumn('age_min', 'integer', ['null' => true])
+            ->addColumn('age_max', 'integer', ['null' => true])
             ->create();
 
         $table = $this->table('games');
         $table
             ->addColumn('title', 'string', ['limit' => 100])
             ->addColumn('description', 'string', ['null' => true])
-            ->addColumn('nb_min', 'datetime', ['null' => true])
-            ->addColumn('nb_max', 'datetime', ['null' => true])
-            ->addColumn('age_min', 'datetime', ['null' => true])
-            ->addColumn('age_max', 'datetime', ['null' => true])
+            ->addColumn('nb_min', 'integer', ['null' => true])
+            ->addColumn('nb_max', 'integer', ['null' => true])
+            ->addColumn('age_min', 'integer', ['null' => true])
+            ->addColumn('age_max', 'integer', ['null' => true])
             ->create();
 
         $table = $this->table('users');
@@ -84,6 +65,31 @@ class Initial extends AbstractMigration
             ->addColumn('gender', 'boolean', ['null' => true])
             ->addColumn('birthday', 'datetime')
             ->addColumn('email', 'string', ['limit' => 150])
+            ->create();
+
+        $table = $this->table('categories_games', ['id' => false, 'primary_key' => ['category_id', 'game_id']]);
+        $table
+            ->addColumn('category_id', 'integer')
+            ->addColumn('game_id', 'integer')
+            ->addForeignKey('category_id', 'categories', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('game_id', 'games', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->create();
+
+        $table = $this->table('events_games', ['id' => false, 'primary_key' => ['event_id', 'game_id']]);
+        $table
+            ->addColumn('event_id', 'integer')
+            ->addColumn('game_id', 'integer')
+            ->addForeignKey('event_id', 'events', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('game_id', 'games', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->create();
+
+        $table = $this->table('events_users', ['id' => false, 'primary_key' => ['event_id', 'user_id']]);
+        $table
+            ->addColumn('event_id', 'integer')
+            ->addColumn('user_id', 'integer')
+            ->addColumn('type', 'string', ['limit' => 15, 'default' => 'participant'])
+            ->addForeignKey('event_id', 'events', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('user_id', 'users', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
 
     }
