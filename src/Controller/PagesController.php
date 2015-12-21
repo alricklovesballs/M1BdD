@@ -62,4 +62,8 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
+    public function home() {
+        $this->set('h1', __('Accueil'));
+    }
 }
