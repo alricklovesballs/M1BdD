@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
+use Cake\Event\Event;
+use Cake\Network\Http\Client;
 
 /**
  * Users Controller
@@ -10,6 +13,20 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['add']);
+    }
+
+    public function isAuthorized($user = null)
+    {
+        if (in_array($this->request->action, ['index', 'view', 'logout'])) {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Index method
@@ -45,18 +62,65 @@ class UsersController extends AppController
      */
     public function add()
     {
+        if($this->Auth->user()) {
+            $this->Flash->error(__('Vous êtes déjà connecté.'));
+            return $this->redirect('/');
+        }
+        $this->set('h1', __('Inscription'));
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
+            $data = $this->request->data;
+            if (empty($data['email']) || empty($data['password']) || empty($data['g-recaptcha-response'])) {
+                $this->Flash->error(__('Tous les champs obligatoires n\'ont pas été remplis.'));
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $http = new Client();
+                $reCaptcha = Configure::read('reCAPTCHA');
+                $response = $http->post($reCaptcha['requestUrl'], [
+                    'secret' => $reCaptcha['privateKey'],
+                    'response' => $data['g-recaptcha-response'],
+                    'remoteip' => $this->request->env('REMOTE_ADDR')
+                ])->json;
+                if (!$response['success']) {
+                    $this->Flash->error(__('La vérification anti-bot a retourné une erreur. Veuillez réessayer.'));
+                } else {
+                    $user = $this->Users->patchEntity($user, $this->request->data);
+                    if ($this->Users->save($user)) {
+                        $user->sendEmailActivation();
+                        $this->Flash->success(__('Le compte a été créé. Vérifiez vos mails pour l\'activer.'));
+                        return $this->redirect('/');
+                    } else {
+                        $this->Flash->error(__('L\'opération a rencontré un problème. Veuillez réessayer.'));
+                    }
+                }
             }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
+    }
+
+    public function login() {
+        if($this->Auth->user()) {
+            $this->Flash->error(__('Vous êtes déjà connecté.'));
+            return $this->redirect('/');
+        }
+        $this->set('h1', __('Connexion'));
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                $this->Flash->success(__('Connexion réussie.'));
+                return $this->redirect($this->Auth->redirectUrl());
+            } else {
+                $this->Flash->error(__('Identifiants incorrects.'));
+            }
+        }
+        $user = $this->Users->newEntity();
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
+    }
+
+    public function logout() {
+        return $this->redirect($this->Auth->logout());
     }
 
     /**
