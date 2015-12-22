@@ -43,6 +43,14 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'authenticate' => [
+                'Form'
+            ],
+            'authError' => 'Vous ne pouvez pas faire cela.',
+            'logoutRedirect' => '/'
+        ]);
     }
 
     /**
@@ -58,5 +66,14 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+
+    public function isAuthorized($user = null)
+    {
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -1,3 +1,23 @@
+<?php
+$nav = [
+    'home' => [
+        'url' => '/',
+        'txt' => 'Accueil',
+    ],
+    'events' => [
+        'url' => ['controller' => 'events', 'action' => 'index'],
+        'txt' => 'Évènements',
+    ],
+    'members' => [
+        'url' => ['controller' => 'users', 'action' => 'index'],
+        'txt' => 'Membres',
+    ],
+    'login' => [
+        'url' => ['controller' => 'users', 'action' => 'login'],
+        'txt' => 'Connexion',
+    ],
+];
+?>
 <nav class="top-bar expanded" data-topbar role="navigation">
     <ul class="title-area large-3 medium-4 columns">
         <li class="name">
@@ -6,8 +26,9 @@
     </ul>
     <section class="top-bar-section">
         <ul class="right">
-            <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-            <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
+            <?php foreach($nav as $id => $n): ?>
+                <li><?= $this->Html->link($n['txt'], $n['url'], ['id' => $id]) ?></li>
+            <?php endforeach; ?>
         </ul>
     </section>
 </nav>
