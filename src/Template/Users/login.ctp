@@ -3,7 +3,7 @@ $this->assign('title', $h1);
 ?>
 <article>
     <?= $this->Form->create($user) ?>
-    <?= $this->Form->input('email', ['label' => __('Adresse email')]) ?>
+    <?= $this->Form->input('username', ['label' => __('Pseudonyme')]) ?>
     <?= $this->Form->input('password', ['label' => __('Mot de passe')]) ?>
     <?= $this->Form->submit(__('Connecter')) ?>
     <?= $this->Form->end() ?>

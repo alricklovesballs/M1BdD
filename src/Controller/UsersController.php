@@ -70,8 +70,10 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $data = $this->request->data;
-            if (empty($data['email']) || empty($data['password']) || empty($data['g-recaptcha-response'])) {
+            if (empty($data['username']) || empty($data['password']) || empty($data['email']) || empty($data['firstname']) || empty($data['lastname']) || empty($data['birthday']) || empty($data['g-recaptcha-response'])) {
                 $this->Flash->error(__('Tous les champs obligatoires n\'ont pas été remplis.'));
+            } elseif($data['password'] != $data['password_confirm']) {
+                $this->Flash->error(__('Les mots-de-passe ne sont pas identiques.'));
             } else {
                 $http = new Client();
                 $reCaptcha = Configure::read('reCAPTCHA');
@@ -82,13 +84,14 @@ class UsersController extends AppController
                 ])->json;
                 if (!$response['success']) {
                     $this->Flash->error(__('La vérification anti-bot a retourné une erreur. Veuillez réessayer.'));
+                    debug($response);
                 } else {
                     $user = $this->Users->patchEntity($user, $this->request->data);
                     if ($this->Users->save($user)) {
-                        $user->sendEmailActivation();
-                        $this->Flash->success(__('Le compte a été créé. Vérifiez vos mails pour l\'activer.'));
+                        $this->Flash->success(__('Le compte a été créé.'));
                         return $this->redirect('/');
                     } else {
+                        debug($data);
                         $this->Flash->error(__('L\'opération a rencontré un problème. Veuillez réessayer.'));
                     }
                 }

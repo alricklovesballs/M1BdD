@@ -15,10 +15,6 @@
             <td><?= h($user->username) ?></td>
         </tr>
         <tr>
-            <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Lastname') ?></th>
             <td><?= h($user->lastname) ?></td>
         </tr>
@@ -27,20 +23,8 @@
             <td><?= h($user->firstname) ?></td>
         </tr>
         <tr>
-            <th><?= __('Email') ?></th>
-            <td><?= h($user->email) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Birthday') ?></th>
             <td><?= h($user->birthday) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Gender') ?></th>
-            <td><?= $user->gender ? __('Yes') : __('No'); ?></td>
-         </tr>
     </table>
 </div>

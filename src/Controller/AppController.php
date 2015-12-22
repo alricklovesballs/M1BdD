@@ -46,10 +46,7 @@ class AppController extends Controller
         $this->loadComponent('Auth', [
             'authorize' => ['Controller'],
             'authenticate' => [
-                'Form' => [
-                    'fields' => ['username' => 'email', 'password' => 'password'],
-                    'finder' => 'auth'
-                ]
+                'Form'
             ],
             'authError' => 'Vous ne pouvez pas faire cela.',
             'logoutRedirect' => '/'
