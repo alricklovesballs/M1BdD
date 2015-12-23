@@ -15,7 +15,7 @@ $this->Html->script(/*\Cake\Core\Configure::read('reCAPTCHA.scriptFile')*/'https
         <?= $this->Form->input('email', ['label' => __('Adresse email')]) ?>
         <?= $this->Form->input('firstname', ['label' => __('Prénom')]) ?>
         <?= $this->Form->input('lastname', ['label' => __('Nom')]) ?>
-        <?= $this->Form->input('birthday', ['label' => __('Date de naissance'), 'type' => 'date'/*, 'minYear' => 1910*/]) ?>
+        <?= $this->Form->input('birthday', ['label' => __('Date de naissance'), 'type' => 'date', 'minYear' => 1910, 'maxYear' => date('Y')]) ?>
     </fieldset>
     <div
         class="g-recaptcha"
