@@ -47,7 +47,7 @@ class EventsController extends AppController
     public function view($id = null)
     {
         $event = $this->Events->get($id, [
-            'contain' => ['EventGames', 'EventUsers']
+            'contain' => ['Games', 'Users']
         ]);
         $this->set('event', $event);
         $this->set('_serialize', ['event']);
