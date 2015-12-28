@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property bool $gender
  * @property \Cake\I18n\Time $birthday
  * @property string $email
+ * @property string $role
  */
 class User extends Entity
 {

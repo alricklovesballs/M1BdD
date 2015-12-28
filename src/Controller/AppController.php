@@ -51,6 +51,8 @@ class AppController extends Controller
             'authError' => 'Vous ne pouvez pas faire cela.',
             'logoutRedirect' => '/'
         ]);
+
+        $this->set('authUser', $this->Auth->user());
     }
 
     /**
