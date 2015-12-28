@@ -40,11 +40,11 @@
         </tr>
         <tr>
             <th><?= __('Start') ?></th>
-            <td><?= h($event->start) ?></td>
+            <td><?= $this->element('calendar-day', ['date' => $event->start]) ?></td>
         </tr>
         <tr>
             <th><?= __('End') ?></th>
-            <td><?= h($event->end) ?></td>
+            <td><?= $this->element('calendar-day', ['date' => $event->end]) ?></td>
         </tr>
     </table>
 </div>

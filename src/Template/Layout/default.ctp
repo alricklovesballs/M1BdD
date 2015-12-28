@@ -24,7 +24,7 @@
         <?= \Cake\Core\Configure::read('Website.title') ?> - <?= $this->fetch('title') ?>
     </title>
 
-    <?= $this->Html->css(['base', 'cake', 'foundation', 'style']) ?>
+    <?= $this->Html->css(['base', 'cake'/*, 'foundation'*/, 'font-awesome', 'style']) ?>
     <?= $this->fetch('css') ?>
 </head>
 <body>
