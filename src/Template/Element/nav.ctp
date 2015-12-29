@@ -8,6 +8,10 @@ $nav = [
         'url' => ['controller' => 'events', 'action' => 'index'],
         'txt' => 'Évènements',
     ],
+    'games' => [
+        'url' => ['controller' => 'games', 'action' => 'index'],
+        'txt' => 'Jeux',
+    ],
     'members' => [
         'url' => ['controller' => 'users', 'action' => 'index'],
         'txt' => 'Membres',

@@ -2,9 +2,21 @@
 $this->assign('title', 'Evénement : ' . h($event->title));
 ?>
 <article class="actions">
+    <?php if($authUser): ?>
+        <?php
+        $test = false;
+        foreach($event->users as $u) {
+            if($u['id'] == $authUser['id']) $test = true;
+        }
+        if($test): ?>
+            <?= $this->Form->postLink(__('Se désinscrire'), ['action' => 'unjoin', $event->id], ['class' => 'button small alert', 'confirm' => __('Êtes-vous sûr de vouloir vous désinscrire de {0} ?', $event->title)]) ?>
+        <?php else: ?>
+            <?= $this->Form->postLink(__('S\inscrire'), ['action' => 'join', $event->id], ['class' => 'button small success', 'confirm' => __('Êtes-vous sûr de vouloir vous inscrire à {0} ?', $event->title)]) ?>
+        <?php endif; ?>
+    <?php endif; ?>
     <?php if($authUser && $authUser['role'] === 'admin'): ?>
         <?= $this->Html->link('Modifier', ['controller' => 'events', 'action' => 'edit', $event->id], ['class' => 'button small']) ?>
-        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $event->id], ['class' => 'button small alert', 'confirm' => __('Êtes-vous sûr de vouloir supprimer {0}?', $event->title)]) ?>
+        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $event->id], ['class' => 'button small alert', 'confirm' => __('Êtes-vous sûr de vouloir supprimer {0} ?', $event->title)]) ?>
     <?php endif; ?>
 </article>
 <article class="event-view">
