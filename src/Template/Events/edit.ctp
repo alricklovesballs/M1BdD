@@ -25,6 +25,6 @@
             echo $this->Form->input('age_max');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Enregistrer'), ['class' => 'button success']) ?>
     <?= $this->Form->end() ?>
 </div>

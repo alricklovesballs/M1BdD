@@ -15,8 +15,8 @@ use Cake\ORM\Entity;
  * @property int $nb_max
  * @property int $age_min
  * @property int $age_max
- * @property \App\Model\Entity\EventGame[] $event_games
- * @property \App\Model\Entity\EventUser[] $event_users
+ * @property \App\Model\Entity\Game[] $games
+ * @property \App\Model\Entity\User[] $users
  */
 class Event extends Entity
 {

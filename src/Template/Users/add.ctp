@@ -22,6 +22,6 @@ $this->Html->script(/*\Cake\Core\Configure::read('reCAPTCHA.scriptFile')*/'https
         data-sitekey="<?= \Cake\Core\Configure::read('reCAPTCHA.publicKey') ?>"
         data-theme="light"
     ></div>
-    <?= $this->Form->submit(__('Créer le compte')) ?>
+    <?= $this->Form->submit(__('Créer le compte'), ['class' => 'button success']) ?>
     <?= $this->Form->end() ?>
 </article>
