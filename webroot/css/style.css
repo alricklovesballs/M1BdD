@@ -356,7 +356,18 @@ th {
 body.is-reveal-open {
   overflow: hidden; }
 
+header {
+  height: auto;
+  padding: 16px 3%; }
+  header .header-logo {
+    height: 135px; }
+
+article.actions {
+  text-align: center;
+  margin: 25px; }
+
 .calendar-one {
+  display: inline-block;
   width: 80px;
   height: 93px;
   margin: 4px;
@@ -436,8 +447,9 @@ body.is-reveal-open {
     .event-list-item .event-data .event-data-sup {
       width: 150px; }
 
-article.actions {
-  text-align: center;
-  margin: 25px; }
+.event-view .event-title {
+  text-align: center; }
+.event-view .event-date {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

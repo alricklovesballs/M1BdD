@@ -1,3 +1,6 @@
+<?php
+$this->assign('title', 'Evénements');
+?>
 <article class="actions">
     <?php if($authUser && $authUser['role'] === 'admin'): ?>
         <?= $this->Html->link('Nouveau', ['controller' => 'events', 'action' => 'add'], ['class' => 'button small']) ?>

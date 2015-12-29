@@ -1,6 +1,21 @@
 @import 'foundation/_foundation';
 
+header {
+  height: auto;
+  padding: 16px 3%;
+
+  .header-logo {
+    height: 135px;
+  }
+}
+
+article.actions {
+  text-align: center;
+  margin: 25px;
+}
+
 .calendar-one {
+  display: inline-block;
   width: 80px;
   height: 93px;
   margin: 4px;
@@ -109,7 +124,12 @@
   }
 }
 
-article.actions {
-  text-align: center;
-  margin: 25px;
+.event-view {
+  .event-title {
+    text-align: center;
+  }
+
+  .event-date {
+    text-align: center;
+  }
 }
