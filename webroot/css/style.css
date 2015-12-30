@@ -417,7 +417,6 @@ article.actions {
 .event-list-item {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   flex-wrap: nowrap;
   margin: 10px auto;
   padding: 5px;
@@ -430,6 +429,7 @@ article.actions {
     cursor: pointer;
     vertical-align: middle; }
   .event-list-item .event-data {
+    flex-grow: 1;
     display: inline-block;
     vertical-align: top; }
     .event-list-item .event-data .event-title {
@@ -445,7 +445,8 @@ article.actions {
       padding-left: 4px;
       flex-grow: 1; }
     .event-list-item .event-data .event-data-sup {
-      width: 150px; }
+      width: 140px;
+      flex-shrink: 0; }
 
 .event-view .event-title {
   text-align: center; }
