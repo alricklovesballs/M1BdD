@@ -79,7 +79,6 @@ article.actions {
 .event-list-item {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   flex-wrap: nowrap;
   margin: 10px auto;
   padding: 5px;
@@ -96,6 +95,7 @@ article.actions {
   }
 
   .event-data {
+    flex-grow: 1;
     display: inline-block;
     vertical-align: top;
 
@@ -119,7 +119,8 @@ article.actions {
     }
 
     .event-data-sup {
-      width: 150px;
+      width: 140px;
+      flex-shrink: 0;
     }
   }
 }

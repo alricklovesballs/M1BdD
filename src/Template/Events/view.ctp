@@ -45,7 +45,7 @@ $this->assign('title', 'Evénement : ' . h($event->title));
         <strong>Liste des jeux : </strong>
         <ul>
         <?php foreach($event->games as $game): ?>
-            <li><?= $game->title ?></li>
+            <li><?= $this->Html->link($game->title, ['controller' => 'games', 'action' => 'view', $game->id]) ?></li>
         <?php endforeach; ?>
         </ul>
     </div>

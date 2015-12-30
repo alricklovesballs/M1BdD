@@ -21,7 +21,7 @@ $this->assign('title', 'Jeux');
         <tbody>
             <?php foreach ($games as $game): ?>
             <tr>
-                <td><?= h($game->title) ?></td>
+                <td><?= $this->Html->link($game->title, ['controller' => 'games', 'action' => 'view', $game->id]) ?></td>
                 <td><?= $this->Number->format($game->nb_min) ?></td>
                 <td><?= $this->Number->format($game->nb_max) ?></td>
                 <td><?= $this->Number->format($game->age_min) ?></td>
