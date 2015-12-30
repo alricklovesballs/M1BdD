@@ -25,8 +25,10 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->table('users');
-        $this->displayField('id');
+        $this->displayField('username');
         $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
     }
 
@@ -44,33 +46,34 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('username', 'create')
-            ->notEmpty('username');
+            ->notEmpty('username', __('Un pseudonyme est nécessaire.'));
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password');
+            ->notEmpty('password', __('Un mot de passe est nécessaire.'));
 
         $validator
             ->requirePresence('lastname', 'create')
-            ->notEmpty('lastname');
+            ->notEmpty('lastname', __('Un nom est nécessaire.'));
 
         $validator
             ->requirePresence('firstname', 'create')
-            ->notEmpty('firstname');
+            ->notEmpty('firstname', __('Un prénom est nécessaire.'));
 
         $validator
             ->add('gender', 'valid', ['rule' => 'boolean'])
             ->allowEmpty('gender');
 
         $validator
-            ->add('birthday', 'valid', ['rule' => 'datetime'])
+            ->add('birthday', 'valid', ['rule' => 'date', 'message' => __('La date n\'est pas valide.')])
             ->requirePresence('birthday', 'create')
-            ->notEmpty('birthday');
+            ->notEmpty('birthday', __('Une date de naissance est nécessaire.'));
 
         $validator
             ->add('email', 'valid', ['rule' => 'email'])
             ->requirePresence('email', 'create')
-            ->notEmpty('email');
+            ->notEmpty('email', __('Une adresse email est nécessaire.'))
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => __('Cette adresse email est déjà utilisée.')]);
 
         return $validator;
     }

@@ -8,15 +8,15 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $title
- * @property string $description
+ * @property text $description
  * @property \Cake\I18n\Time $start
  * @property \Cake\I18n\Time $end
- * @property \Cake\I18n\Time $nb_min
- * @property \Cake\I18n\Time $nb_max
- * @property \Cake\I18n\Time $age_min
- * @property \Cake\I18n\Time $age_max
- * @property \App\Model\Entity\EventGame[] $event_games
- * @property \App\Model\Entity\EventUser[] $event_users
+ * @property int $nb_min
+ * @property int $nb_max
+ * @property int $age_min
+ * @property int $age_max
+ * @property \App\Model\Entity\Game[] $games
+ * @property \App\Model\Entity\User[] $users
  */
 class Event extends Entity
 {

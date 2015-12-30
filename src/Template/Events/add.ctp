@@ -2,10 +2,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Events'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Event Games'), ['controller' => 'EventGames', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Event Game'), ['controller' => 'EventGames', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Event Users'), ['controller' => 'EventUsers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Event User'), ['controller' => 'EventUsers', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="events form large-9 medium-8 columns content">
@@ -21,8 +17,9 @@
             echo $this->Form->input('nb_max');
             echo $this->Form->input('age_min');
             echo $this->Form->input('age_max');
+            echo $this->Form->input('games._ids', ['multiple' => 'checkbox']); // @see http://book.cakephp.org/3.0/fr/views/helpers/form.html#creation-d-elements-de-formulaire
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Créer'), ['class' => 'button success']) ?>
     <?= $this->Form->end() ?>
 </div>

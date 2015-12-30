@@ -48,7 +48,7 @@ class UsersFixture extends TestFixture
             'lastname' => 'Lorem ipsum dolor sit amet',
             'firstname' => 'Lorem ipsum dolor sit amet',
             'gender' => 1,
-            'birthday' => '2015-11-18 11:49:48',
+            'birthday' => '2015-11-30 20:41:40',
             'email' => 'Lorem ipsum dolor sit amet'
         ],
     ];

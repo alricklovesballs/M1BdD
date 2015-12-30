@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Games Controller
@@ -10,6 +11,20 @@ use App\Controller\AppController;
  */
 class GamesController extends AppController
 {
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
+
+    public function isAuthorized($user = null)
+    {
+        if (in_array($this->request->action, ['index', 'view'])) {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Index method

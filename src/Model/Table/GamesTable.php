@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  * Games Model
  *
  * @property \Cake\ORM\Association\BelongsToMany $Categories
+ * @property \Cake\ORM\Association\BelongsToMany $Events
  */
 class GamesTable extends Table
 {
@@ -34,6 +35,11 @@ class GamesTable extends Table
             'targetForeignKey' => 'category_id',
             'joinTable' => 'categories_games'
         ]);
+        $this->belongsToMany('Events', [
+            'foreignKey' => 'game_id',
+            'targetForeignKey' => 'event_id',
+            'joinTable' => 'events_games'
+        ]);
     }
 
     /**
@@ -56,19 +62,19 @@ class GamesTable extends Table
             ->allowEmpty('description');
 
         $validator
-            ->add('nb_min', 'valid', ['rule' => 'datetime'])
+            ->add('nb_min', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('nb_min');
 
         $validator
-            ->add('nb_max', 'valid', ['rule' => 'datetime'])
+            ->add('nb_max', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('nb_max');
 
         $validator
-            ->add('age_min', 'valid', ['rule' => 'datetime'])
+            ->add('age_min', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('age_min');
 
         $validator
-            ->add('age_max', 'valid', ['rule' => 'datetime'])
+            ->add('age_max', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('age_max');
 
         return $validator;

@@ -8,11 +8,11 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $title
- * @property string $description
- * @property \Cake\I18n\Time $nb_min
- * @property \Cake\I18n\Time $nb_max
- * @property \Cake\I18n\Time $age_min
- * @property \Cake\I18n\Time $age_max
+ * @property text $description
+ * @property int $nb_min
+ * @property int $nb_max
+ * @property int $age_min
+ * @property int $age_max
  * @property \App\Model\Entity\Category[] $categories
  */
 class Game extends Entity

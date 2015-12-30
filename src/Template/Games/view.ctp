@@ -26,19 +26,19 @@
         </tr>
         <tr>
             <th><?= __('Nb Min') ?></th>
-            <td><?= h($game->nb_min) ?></td>
+            <td><?= $this->Number->format($game->nb_min) ?></td>
         </tr>
         <tr>
             <th><?= __('Nb Max') ?></th>
-            <td><?= h($game->nb_max) ?></td>
+            <td><?= $this->Number->format($game->nb_max) ?></td>
         </tr>
         <tr>
             <th><?= __('Age Min') ?></th>
-            <td><?= h($game->age_min) ?></td>
+            <td><?= $this->Number->format($game->age_min) ?></td>
         </tr>
         <tr>
             <th><?= __('Age Max') ?></th>
-            <td><?= h($game->age_max) ?></td>
+            <td><?= $this->Number->format($game->age_max) ?></td>
         </tr>
     </table>
     <div class="related">
