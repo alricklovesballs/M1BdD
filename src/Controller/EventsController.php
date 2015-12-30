@@ -34,7 +34,7 @@ class EventsController extends AppController
      */
     public function index()
     {
-        $this->set('events', $this->Events->find('all'));
+        $this->set('events', $this->Events->find('all', ['contain' => ['Users']]));
         $this->set('_serialize', ['events']);
     }
 

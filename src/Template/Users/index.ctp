@@ -1,10 +1,9 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users index large-9 medium-8 columns content">
+<?php
+$this->assign('title', 'Membres');
+?>
+<article class="actions">
+</article>
+<article>
     <h3><?= __('Users') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -21,7 +20,7 @@
                 <td><?= h($user->username) ?></td>
                 <td><?= h($user->lastname) ?></td>
                 <td><?= h($user->firstname) ?></td>
-                <td><?= h($user->birthday) ?></td>
+                <td><?= $user->birthday->i18nFormat('dd/MM/yyyy') ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -34,4 +33,4 @@
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
-</div>
+</article>
