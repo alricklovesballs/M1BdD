@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $title
- * @property string $description
+ * @property text $description
  * @property \Cake\I18n\Time $start
  * @property \Cake\I18n\Time $end
  * @property int $nb_min
