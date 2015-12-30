@@ -20,7 +20,7 @@ class EventsController extends AppController
 
     public function isAuthorized($user = null)
     {
-        if (in_array($this->request->action, ['index', 'view'])) {
+        if (in_array($this->request->action, ['index', 'view', 'join', 'unjoin'])) {
             return true;
         }
 
@@ -72,6 +72,7 @@ class EventsController extends AppController
             }
         }
         $this->set(compact('event'));
+        $this->set('games', $this->Events->Games->find('list'));
         $this->set('_serialize', ['event']);
     }
 
@@ -85,7 +86,7 @@ class EventsController extends AppController
     public function edit($id = null)
     {
         $event = $this->Events->get($id, [
-            'contain' => []
+            'contain' => ['Games']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $event = $this->Events->patchEntity($event, $this->request->data);
@@ -97,6 +98,7 @@ class EventsController extends AppController
             }
         }
         $this->set(compact('event'));
+        $this->set('games', $this->Events->Games->find('list'));
         $this->set('_serialize', ['event']);
     }
 
@@ -134,14 +136,15 @@ class EventsController extends AppController
         return $this->redirect(['action' => 'view', $id]);
     }
 
-    public function unjoin($id = null) {
+    public function unjoin($id = null, $userid = null) {
+        if($this->Auth->user('role') !== 'admin' || $userid === null) $userid = $this->Auth->user('id');
         $this->request->allowMethod(['post', 'delete']);
         $event = $this->Events->get($id, ['contain' => ['Users']]);
         $tmp = $event->users; // @see http://www.yiiframework.com/forum/index.php/topic/30830-indirect-modification-of-overloaded-property-modelrelation-has-no-effect/
         $test = false;
         if($tmp !== null) {
             foreach ($tmp as $k => $u) {
-                if ($u['id'] == $this->Auth->user('id')) $test = $k;
+                if ($u['id'] == $userid) $test = $k;
             }
             if($test !== false) {
                 unset($tmp[$test]);

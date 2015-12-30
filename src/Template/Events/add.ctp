@@ -17,6 +17,7 @@
             echo $this->Form->input('nb_max');
             echo $this->Form->input('age_min');
             echo $this->Form->input('age_max');
+            echo $this->Form->input('games._ids', ['multiple' => 'checkbox']); // @see http://book.cakephp.org/3.0/fr/views/helpers/form.html#creation-d-elements-de-formulaire
         ?>
     </fieldset>
     <?= $this->Form->button(__('Créer'), ['class' => 'button success']) ?>

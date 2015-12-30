@@ -11,7 +11,7 @@ $this->assign('title', 'Evénement : ' . h($event->title));
         if($test): ?>
             <?= $this->Form->postLink(__('Se désinscrire'), ['action' => 'unjoin', $event->id], ['class' => 'button small alert', 'confirm' => __('Êtes-vous sûr de vouloir vous désinscrire de {0} ?', $event->title)]) ?>
         <?php else: ?>
-            <?= $this->Form->postLink(__('S\inscrire'), ['action' => 'join', $event->id], ['class' => 'button small success', 'confirm' => __('Êtes-vous sûr de vouloir vous inscrire à {0} ?', $event->title)]) ?>
+            <?= $this->Form->postLink(__('S\'inscrire'), ['action' => 'join', $event->id], ['class' => 'button small success', 'confirm' => __('Êtes-vous sûr de vouloir vous inscrire à {0} ?', $event->title)]) ?>
         <?php endif; ?>
     <?php endif; ?>
     <?php if($authUser && $authUser['role'] === 'admin'): ?>
@@ -24,12 +24,29 @@ $this->assign('title', 'Evénement : ' . h($event->title));
     <div class="event-date"><?= $this->element('calendar-day', ['date' => $event->start]) ?></div>
     <div class="event-description"><?= h($event->description) ?></div>
     <div class="event-data-sup">
+        <strong>Fin de l'événement : </strong><?= $event->end->i18nFormat('dd/MM/yyyy HH:mm') ?>
+        <br>
         <strong>Âges : </strong><?php if($event->age_min === null && $event->age_max === null) echo __('Tous'); else { if($event->age_min !== null) echo __('à partir de {0} ans ', $this->Number->format($event->age_min)); if($event->age_max !== null) echo __('jusqu\'à {0} ans', $this->Number->format($event->age_max)); } ?>
         <br>
         <strong>Nombre de places : </strong>minimum : <?= $this->Number->format($event->nb_min) ?>, maximum : <?= $this->Number->format($event->nb_max) ?>
         <br>
-        <strong>Nombre de participants : </strong>0
+        <strong>Nombre de participants : </strong><?= count($event->users) ?> :
+        <ul>
+        <?php foreach($event->users as $user): ?>
+            <li>
+                <?= $user->username ?>
+                <?php if($authUser && $authUser['role'] === 'admin'): ?>
+                    <?= $this->Form->postLink('<i class="fa fa-times" style="color:red;"></i>', ['action' => 'unjoin', $event->id, $user->id], ['escape' => false, 'title' => 'Désinscrire', 'confirm' => __('Êtes-vous sûr de vouloir désinscrire {0} de {1} ?',$user->username , $event->title)]) ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
         <br>
-        <strong>Fin de l'événement : </strong><?= $event->end->i18nFormat('dd/MM/yyyy HH:mm') ?>
+        <strong>Liste des jeux : </strong>
+        <ul>
+        <?php foreach($event->games as $game): ?>
+            <li><?= $game->title ?></li>
+        <?php endforeach; ?>
+        </ul>
     </div>
 </article>
